@@ -305,13 +305,27 @@ p{
 </head>
 
 <body>
-
-<audio id="music" loop>
+<audio id="bgMusic" loop>
 
     <source src="song.mp3" type="audio/mpeg">
 
 </audio>
 
+<div class="start-screen" id="startScreen">
+
+    Click to start
+
+</div>
+
+<script>
+
+document.getElementById("startScreen").addEventListener("click", () => {
+
+    document.getElementById("bgMusic").play();
+
+});
+
+</script>
 <div class="start-screen" id="startScreen">
 
     <h1>💛 Happy Anniversary Chel Mi Amor 💛</h1>
