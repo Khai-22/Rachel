@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Anniversary Chel Mi Amor</title>
+
+<style>
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+body{
+
+    height:100vh;
+
+    overflow:hidden;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+
+    url('photo.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+/* Floating Hearts */
+
+.heart{
+
+    position:absolute;
+
+    color:#FFD700;
+
+    pointer-events:none;
+
+    animation:float 8s linear infinite;
+
+    z-index:1;
+
+}
+
+@keyframes float{
+
+    from{
+
+        transform:translateY(100vh) scale(0);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-120vh) scale(1.5);
+
+        opacity:0;
+
+    }
+
+}
+
+/* First Screen */
+
+.start-screen{
+
+    text-align:center;
+
+    color:white;
+
+    z-index:10;
+
+}
+
+.start-screen h1{
+
+    font-size:55px;
+
+    color:#FFD700;
+
+    text-shadow:0 0 20px gold;
+
+    margin-bottom:30px;
+
+}
+
+.date-btn{
+
+    padding:18px 40px;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    background:linear-gradient(45deg,#FFD700,#FFC107);
+
+    color:#333;
+
+    box-shadow:0 0 25px gold;
+
+    transition:.4s;
+
+}
+
+.date-btn:hover{
+
+    transform:scale(1.08);
+
+}
+
+.click-text{
+
+    margin-top:20px;
+
+    font-size:18px;
+
+}
+
+/* Letter Card */
+
+.card{
+
+    position:absolute;
+
+    width:420px;
+
+    max-width:90%;
+
+    padding:40px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    border:2px solid rgba(255,215,0,.4);
+
+    border-radius:30px;
+
+    box-shadow:0 0 40px rgba(255,215,0,.5);
+
+    color:white;
+
+    opacity:0;
+
+    transform:scale(.5);
+
+    transition:1.5s;
+
+    z-index:20;
+
+}
+
+.card.show{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.title{
+
+    color:#FFD700;
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.special{
+
+    font-size:55px;
+
+    color:#FFD700;
+
+    font-weight:bold;
+
+    margin:20px 0;
+
+}
+
+.message{
+
+    opacity:0;
+
+    transform:translateY(30px);
+
+}
+
+.card.show .message{
+
+    animation:fadeUp 1.5s forwards;
+
+}
+
+.card.show .message:nth-child(1){animation-delay:.5s;}
+
+.card.show .message:nth-child(2){animation-delay:1.5s;}
+
+.card.show .message:nth-child(3){animation-delay:2.5s;}
+
+.card.show .message:nth-child(4){animation-delay:3.5s;}
+
+.card.show .message:nth-child(5){animation-delay:4.5s;}
+
+@keyframes fadeUp{
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+p{
+
+    font-size:20px;
+
+    line-height:1.7;
+
+    margin:15px 0;
+
+}
+
+.roses{
+
+    font-size:45px;
+
+}
+
+/* Heart Explosion */
+
+.explosion-heart{
+
+    position:absolute;
+
+    font-size:30px;
+
+    animation:explode 2s forwards;
+
+    pointer-events:none;
+
+    z-index:100;
+
+}
+
+@keyframes explode{
+
+    to{
+
+        transform:
+
+            translate(var(--x), var(--y))
+
+            scale(0);
+
+        opacity:0;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" loop>
+
+    <source src="song.mp3" type="audio/mpeg">
+
+</audio>
+
+<div class="start-screen" id="startScreen">
+
+    <h1>💛 Happy Anniversary Chel Mi Amor 💛</h1>
+
+    <button class="date-btn" onclick="openLetter()">
+
+        12.29.2021
+
+    </button>
+
+    <div class="click-text">
+
+        Click our anniversary date to open our letter ❤️
+
+    </div>
+
+</div>
+
+<div class="card hidden" id="card">
+
+    <h1 class="title message">
+
+        Happy Anniversary ❤️
+
+    </h1>
+
+    <div class="special message">
+
+        Chel Mi Amor 💛
+
+    </div>
+
+    <p class="message">
+
+        Thank you for every smile, every memory,
+
+        and every beautiful moment we've shared together.
+
+    </p>
+
+    <p class="message">
+
+        No matter where life takes us,
+
+        my heart will always choose you.
+
+    </p>
+
+    <div class="message roses">
+
+        🌹 🌹
+
+    </div>
+
+</div>
+
+<script>
+
+function openLetter(){
+
+    document.getElementById("music").play();
+
+    document.getElementById("startScreen")
+
+    .classList.add("hidden");
+
+    let card=document.getElementById("card");
+
+    card.classList.remove("hidden");
+
+    setTimeout(()=>{
+
+        card.classList.add("show");
+
+    },100);
+
+    heartExplosion();
+
+}
+
+/* Floating Hearts */
+
+function createHeart(){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML=Math.random()>.5 ? "💛":"❤️";
+
+    heart.style.left=Math.random()*100+"vw";
+
+    heart.style.fontSize=(15+Math.random()*25)+"px";
+
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),8000);
+
+}
+
+setInterval(createHeart,300);
+
+/* Heart Explosion */
+
+function heartExplosion(){
+
+    for(let i=0;i<40;i++){
+
+        const h=document.createElement("div");
+
+        h.className="explosion-heart";
+
+        h.innerHTML=Math.random()>.5 ? "💛":"❤️";
+
+        h.style.left="50%";
+
+        h.style.top="50%";
+
+        h.style.setProperty(
+
+            '--x',
+
+            (Math.random()*600-300)+'px'
+
+        );
+
+        h.style.setProperty(
+
+            '--y',
+
+            (Math.random()*600-300)+'px'
+
+        );
+
+        document.body.appendChild(h);
+
+        setTimeout(()=>h.remove(),2000);
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
